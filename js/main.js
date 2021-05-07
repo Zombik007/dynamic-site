@@ -1,18 +1,17 @@
-// DOM Elementts
+// DOM елементи
 const time = document.getElementById("time"),
   greeting = document.getElementById("greeting"),
   name = document.getElementById("name"),
   focus = document.getElementById("focus");
 
-// Show Time
+// Функція відображення часу
 function showTime() {
-  // let today = new Date(2021, 07, 05, 02, 33, 30);
-    let today = new Date(),
-  (hour = today.getHours()),
-    (min = today.getMinutes()),
-    (sec = today.getSeconds());
+  let today = new Date(),
+    hour = today.getHours(),
+    min = today.getMinutes(),
+    sec = today.getSeconds();
 
-  // Output Time
+  // Ввиведення часу на сторінці
   time.innerHTML = `${addZero(hour)}<span>:</span>${addZero(
     min
   )}<span>:</span>${addZero(sec)}`;
@@ -20,46 +19,64 @@ function showTime() {
   setTimeout(showTime, 1000);
 }
 
-// Add Zero
+// Додавання нуля перед однозначною цифрою
 function addZero(n) {
   return (parseInt(n, 10) < 10 ? "0" : "") + n;
 }
 
-// set background and greeting
+// Встановлення фону та привітання
 function setBgGreet() {
-  // let today = new Date(2021, 07, 05, 19, 33, 30);
-    let today = new Date(),
-  hour = today.getHours();
+  let today = new Date(),
+    hour = today.getHours();
 
-  if (hour < 12) {
-    //   Morning
-    document.body.style.backgroundImage =
-      "url('https://i.ibb.co/7vDLJFb/morning.jpg')";
-    greeting.textContent = "Good Morning";
-  } else if (hour < 18) {
-    // Afternoon
-    document.body.style.backgroundImage =
-      "url('https://i.ibb.co/3mThcXc/afternoon.jpg')";
-    greeting.textContent = "Good Afternoon";
+  if (hour === 0 || hour < 5) {
+    // Ніч після 00:00 до 06:00
+    document.body.style.backgroundImage = "url('../img/The_Beach_8.jpg')";
+    greeting.textContent = "Доброї Ночі";
+  } else if (hour < 6) {
+    // Ранок
+    document.body.style.backgroundImage = "url('../img/The_Beach_1.jpg')";
+    greeting.textContent = "Доброго Ранку";
+  } else if (hour < 9) {
+    // Ранок до полудня
+    document.body.style.backgroundImage = "url('../img/The_Beach_2.jpg')";
+    greeting.textContent = "Доброго Ранку";
+  } else if (hour < 12) {
+    // Полудень
+    document.body.style.backgroundImage = "url('../img/The_Beach_3.jpg')";
+    greeting.textContent = "Доброго Дня";
+  } else if (hour < 14) {
+    //   День
+    document.body.style.backgroundImage = "url('../img/The_Beach_4.jpg')";
+    greeting.textContent = "Доброго Дня";
+  } else if (hour < 17) {
+    // День до вечора
+    document.body.style.backgroundImage = "url('../img/The_Beach_5.jpg')";
+    greeting.textContent = "Доброго Дня";
+  } else if (hour < 19) {
+    // Вечір
+    document.body.style.backgroundImage = "url('../img/The_Beach_6.jpg')";
+    greeting.textContent = "Доброго Вечора";
+  } else if (hour < 21) {
+    // Вечір до ночі
+    document.body.style.backgroundImage = "url('../img/The_Beach_7.jpg')";
+    greeting.textContent = "Доброго Вечора";
   } else {
-    //   Evening
-    document.body.style.backgroundImage =
-      "url('https://i.ibb.co/924T2Wv/night.jpg')";
-    greeting.textContent = "Good Evening";
-    document.body.style.color = "white";
+    document.body.style.backgroundImage = "url('../img/The_Beach_8.jpg')";
+    greeting.textContent = "Доброї Ночі";
   }
 }
 
-// Get Name
+// Отримання імені
 function getName() {
   if (localStorage.getItem("name") === null) {
-    name.textContent = "[Enter Name]";
+    name.textContent = "[Введіть ім'я]";
   } else {
     name.textContent = localStorage.getItem("name");
   }
 }
 
-// Set Name
+// Додавання імені в локальне сховище
 function setName(e) {
   if (e.type === "keypress") {
     if (e.which == 13 || e.keyCode == 13) {
@@ -71,16 +88,16 @@ function setName(e) {
   }
 }
 
-// Get Focus
+// Отримання зосередження
 function getFocus() {
   if (localStorage.getItem("focus") === null) {
-    focus.textContent = "[Enter Focus]";
+    focus.textContent = "[Введіть зосередження]";
   } else {
     focus.textContent = localStorage.getItem("focus");
   }
 }
 
-// Set Focus
+// Додавання зосередження в локальне сховище
 function setFocus(e) {
   if (e.type === "keypress") {
     if (e.which == 13 || e.keyCode == 13) {
@@ -92,12 +109,13 @@ function setFocus(e) {
   }
 }
 
+// Додавання прослуховувачі подій
 name.addEventListener("keypress", setName);
 name.addEventListener("blur", setName);
 focus.addEventListener("keypress", setFocus);
 focus.addEventListener("blur", setFocus);
 
-// run
+// Запуск функцій на виконання
 showTime();
 setBgGreet();
 getName();
