@@ -6,8 +6,8 @@ const time = document.getElementById("time"),
 
 // Show Time
 function showTime() {
-  let today = new Date(2021, 07, 05, 02, 33, 30);
-  //   let today = new Date(),
+  // let today = new Date(2021, 07, 05, 02, 33, 30);
+    let today = new Date(),
   (hour = today.getHours()),
     (min = today.getMinutes()),
     (sec = today.getSeconds());
@@ -27,8 +27,8 @@ function addZero(n) {
 
 // set background and greeting
 function setBgGreet() {
-  let today = new Date(2021, 07, 05, 19, 33, 30);
-  //   let today = new Date(),
+  // let today = new Date(2021, 07, 05, 19, 33, 30);
+    let today = new Date(),
   hour = today.getHours();
 
   if (hour < 12) {
